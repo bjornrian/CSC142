@@ -13,17 +13,27 @@ public class GraphicsProject {
         int y1 = 600;
         int x2 = 300;
         int y2 = 300;
-        int f = 0;
+        int red_up = 20;
+        int blue_down = 224;
+        int red_down = 82;
+        int blue_up = 38;
 
         for (int i = 0; i < 310; i += 10) {
-            f -= 3;
-            graphics.setColor(new Color(100 + f, 255, 224)); //light blue to lime
+            red_up += 2.06;
+            blue_down -= 1.2;
+            red_down -= 2;
+            //blue_up += 1.2;
+
+            graphics.setColor(new Color(red_up, 255, blue_down)); //light blue to lime
             graphics.drawLine(x1 + i, y1 - i, x2 + i, y2 + i);
-            graphics.setColor(new Color(20, 255, 224)); //light blue to lime
+
+            graphics.setColor(new Color(red_up, 255, blue_down)); //light blue to lime
             graphics.drawLine(x1 + i, i, x2 - i, y2 + i);
-            graphics.setColor(new Color(82, 255, 38)); //lime to light blue
+
+            graphics.setColor(new Color(red_down, 255, blue_up)); //lime to light blue
             graphics.drawLine(x1 + i, i, x2 + i, y2 - i);
-            graphics.setColor(new Color(82, 255, 38)); //lime to light blue
+
+            graphics.setColor(new Color(red_down, 255, blue_up)); //lime to light blue
             graphics.drawLine(600 - i, 600 - i, x2 + i, y2 - i);
 
 
