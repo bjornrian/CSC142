@@ -9,7 +9,7 @@ from all of mankind until now. This art piece is called "Ball on Stairs".
 
 package graphix;
 import java.awt.*;
-
+/*
 public class GraphicsProject2 {
     public static void main(String[] args) {
         //Initiate canvas
@@ -41,3 +41,4 @@ public class GraphicsProject2 {
         graphics.fillOval(345, 330, 10, 10);
     }
 }
+*/
