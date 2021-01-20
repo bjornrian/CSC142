@@ -23,18 +23,15 @@ public class GraphicsProject {
     }
 
     private static void vortex() {
+        int PANEL_SIDE_LENGTH = 600;
+        int HALF_SIDE_LENGTH = 300;
         //Creates a canvas that is 600*600 pixels
-        DrawingPanel panel2 = new DrawingPanel(600, 600);
+        DrawingPanel panel2 = new DrawingPanel(PANEL_SIDE_LENGTH, PANEL_SIDE_LENGTH);
         Graphics graphics = panel2.getGraphics();
         //Sets background of the canvas to black
         graphics.setColor(Color.BLACK);
         graphics.fillRect(0, 0, 600, 600);
 
-        //These are the the variables that are repeatedly used as parameters in
-        // graphics.drawLine
-        int y1 = 600;
-        int x2 = 300;
-        int y2 = 300;
         //These variables are created so that they can be used as incrementing
         // variables in graphics.setColor
         int red = 0;
@@ -52,19 +49,19 @@ public class GraphicsProject {
 
             //Fourth quadrant
             graphics.setColor(new Color(red, green, blue)); //light blue to lime
-            graphics.drawLine(i, y1 - i, x2 + i, y2 + i);
+            graphics.drawLine(i, PANEL_SIDE_LENGTH - i, HALF_SIDE_LENGTH + i, HALF_SIDE_LENGTH + i);
 
             //Third quadrant
             graphics.setColor(new Color(red, green, blue)); //light blue to lime
-            graphics.drawLine(i, i, x2 - i, y2 + i);
+            graphics.drawLine(i, i, HALF_SIDE_LENGTH - i, HALF_SIDE_LENGTH + i);
 
             //Second quadrant
             graphics.setColor(new Color(red, green, blue)); //lime to light blue
-            graphics.drawLine(600 - i, i, x2 - i, y2 - i);
+            graphics.drawLine(600 - i, i, HALF_SIDE_LENGTH - i, HALF_SIDE_LENGTH - i);
 
             //First quadrant
             graphics.setColor(new Color(red, green, blue)); //lime to light blue
-            graphics.drawLine(600 - i, 600 - i, x2 + i, y2 - i);
+            graphics.drawLine(600 - i, 600 - i, HALF_SIDE_LENGTH + i, HALF_SIDE_LENGTH - i);
         }
     }
 
