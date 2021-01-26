@@ -10,8 +10,8 @@ public class DrawCurve {
         Graphics graphics = panel2.getGraphics();
         graphics.setColor(Color.red);
         for (int x = 0; x <= 700; x++) {
-            int y = (int) Math.round((Math.sqrt(2*Math.PI))*Math.pow(Math.E, -(Math.pow((x-100), 2)) / 2));
-            graphics.drawLine(x, y, x, y);
+            int y = (int) Math.round(-(1/(100 * (Math.sqrt(2 * Math.PI))) * Math.pow(Math.E, - (Math.pow((x - 350), 2)) / 20000)) * 120000 + 500);
+            graphics.drawLine(x, y, x+1, y+1);
         }
     }
 }
