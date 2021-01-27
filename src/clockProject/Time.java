@@ -1,10 +1,14 @@
 package clockProject;
 
+import java.text.DecimalFormat;
+
 public class Time {
     public enum DayPortion {
-        AM,
-        PM
+        AM, PM
     }
+
+    String pattern = "##";
+    DecimalFormat decimalFormat = new DecimalFormat(pattern);
 
     private int hour;
     private int minute;
@@ -12,31 +16,41 @@ public class Time {
 
     public Time(int hour, int minute, DayPortion dayPortion) {
         this.hour = hour;
-        this.minute = minute;
+        this.minute = Integer.parseInt(decimalFormat.format(minute));
         this.dayPortion = dayPortion;
     }
 
     public int getHour() {
-        return 0;
+        return hour;
     }
 
     public int getMinute() {
-        return 0;
+        return minute;
     }
 
     public DayPortion getDayPortion() {
         return dayPortion;
     }
 
-    public int setHour() {
-        return 0;
+    public void setHour(int hour) {
+        if (hour > 12 || hour < 0) {
+            throw new IllegalArgumentException("Hour value cannot be more than 12 or less than 0");
+        }
+        this.hour = hour;
     }
 
-    public int setMinute() {
-        return 0;
+    public void setMinute(int minute) {
+        if (minute > 59 || minute < 0) {
+            throw new IllegalArgumentException("Hour value cannot be more than 12 or less than 0");
+        }
+        this.minute = minute;
     }
 
-    public DayPortion setDayPortion() {
-        return dayPortion;
+    public void setDayPortion(DayPortion dayPortion) {
+        this.dayPortion = dayPortion;
+    }
+
+    public String toString() {
+        return (hour + ":" + minute + dayPortion);
     }
 }
