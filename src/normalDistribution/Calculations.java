@@ -1,4 +1,4 @@
-package NormalDistribution;
+package normalDistribution;
 
 import java.text.DecimalFormat;
 
@@ -6,6 +6,8 @@ import java.text.DecimalFormat;
  * This class has two methods that calculate two seperate things. The first method finds a y-value on the graph from a given
  * x value. The second method finds the area that is under the curve of the graph based off of a given amount of standard
  * deviations.
+ *
+ * @Author Bjorn Rian
  */
 public class Calculations {
     public static String findYValue(int x) {

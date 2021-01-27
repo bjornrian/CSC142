@@ -1,4 +1,4 @@
-package NormalDistribution;
+package normalDistribution;
 
 import static org.junit.Assert.*;
 import org.junit.Test;

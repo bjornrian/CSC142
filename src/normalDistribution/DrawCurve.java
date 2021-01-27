@@ -1,4 +1,4 @@
-package NormalDistribution;
+package normalDistribution;
 
 import java.awt.Graphics;
 import java.awt.Color;
@@ -6,6 +6,8 @@ import java.awt.Color;
 /**
  * This class contains the 2 out of 4 functions that are called in the userInteraction class.
  * Both of these functions produce graphs with normal distribution curves.
+ *
+ * @Author Bjorn Rian
  */
 public class DrawCurve {
 
@@ -14,7 +16,7 @@ public class DrawCurve {
      * standard deviation is 100.
      */
     public static void drawStandardCurve() {
-        NormalDistribution.DrawingPanel panel2 = new NormalDistribution.DrawingPanel(700, 500);
+        normalDistribution.DrawingPanel panel2 = new normalDistribution.DrawingPanel(700, 500);
         Graphics graphics = panel2.getGraphics();
         graphics.setColor(Color.red);
 
@@ -32,7 +34,7 @@ public class DrawCurve {
      * @param numStdDev
      */
     public static void drawShadedCurve(int numStdDev) {
-        NormalDistribution.DrawingPanel panel2 = new NormalDistribution.DrawingPanel(700, 500);
+        normalDistribution.DrawingPanel panel2 = new normalDistribution.DrawingPanel(700, 500);
         Graphics graphics = panel2.getGraphics();
         graphics.setColor(Color.red);
         for (int x = 0; x <= 700; x++) {

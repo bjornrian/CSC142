@@ -1,10 +1,13 @@
-package NormalDistribution;
+package normalDistribution;
 
 import java.util.Scanner;
+
 
 /**
  * Main runner class for displaying information and graphs relating to
  * normal distribution.
+ *
+ * @Author Bjorn Rian
  */
 public class UserInteraction {
 

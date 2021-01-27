@@ -1,4 +1,4 @@
-package NormalDistribution;
+package normalDistribution;
 
 /*
  * =====================================================================
