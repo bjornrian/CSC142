@@ -19,4 +19,12 @@ public class CalculationsTest {
         assertEquals("0.000175", Calculations.findYValue(600));
         assertEquals("0.000009", Calculations.findYValue(700));
     }
+
+    @Test
+    public void testEstimateArea() {
+        assertEquals("0.685105" ,Calculations.estimateArea(1));
+        assertEquals("0.955038" ,Calculations.estimateArea(2));
+        assertEquals("0.997344" ,Calculations.estimateArea(3));
+        assertEquals("0.999938" ,Calculations.estimateArea(4));
+    }
 }

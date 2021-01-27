@@ -3,7 +3,16 @@ package NormalDistribution;
 import java.awt.Graphics;
 import java.awt.Color;
 
+/**
+ * This class contains the 2 out of 4 functions that are called in the userInteraction class.
+ * Both of these functions produce graphs with normal distribution curves.
+ */
 public class DrawCurve {
+
+    /**
+     * This function draws a normal distribution curve on a 500 * 700 canvas. The mean is 350 and the
+     * standard deviation is 100.
+     */
     public static void drawStandardCurve() {
         NormalDistribution.DrawingPanel panel2 = new NormalDistribution.DrawingPanel(700, 500);
         Graphics graphics = panel2.getGraphics();
@@ -17,7 +26,8 @@ public class DrawCurve {
     }
 
     /**
-     * This function draws a normal distribution curve, and in addition adds a shaded area based on how many
+     * This function draws a normal distribution curve, and in addition displays a shaded area based on how many
+     * standard deviations are input by the user.
      *
      * @param numStdDev
      */
@@ -35,6 +45,13 @@ public class DrawCurve {
             graphics.drawLine(x, (int) y + 2, x, 500);
         }
     }
+
+    /**
+     * Equation for normal distribution that is altered to fit on the 500 * 700 canvas.
+     *
+     * @param x
+     * @return
+     */
     private static double calculateNormalDistributionGraph(int x) {
         return -(1 / (100 * (Math.sqrt(2 * Math.PI))) * Math.pow(Math.E, -(Math.pow((x - 350), 2)) / 20000) * 125000 - 500);
     }
