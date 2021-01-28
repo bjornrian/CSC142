@@ -2,9 +2,9 @@ package clockProject;
 
 public class Main {
     public static void main(String[] args) {
-        Time eleven = new Time(12, 9, Time.DayPortion.PM);
-        System.out.println(eleven);
-        eleven.setMinute(8);
-        System.out.println(eleven);
+        Time oneTime = new Time(12, 59, Time.DayPortion.PM);
+        System.out.println(oneTime);
+        Clock oneClock = new Clock(12, 59);
+        System.out.println(oneClock);
     }
 }
