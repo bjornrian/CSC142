@@ -1,5 +1,6 @@
 package clockProject;
 
+import java.awt.Graphics2D;
 import java.awt.*;
 
 public class Clock {
@@ -30,38 +31,50 @@ public class Clock {
         graphics.drawString("11", 195, 190);
 
         minuteHand(minute);
-        hourHand(hour, minute);
+        hourHand(minute, hour);
     }
 
     private void minuteHand(int minute) {
-        int minuteToRadian = 0;
+        int minuteHandRadian = 0;
         if (minute % 5 >= 3) {
-            minuteToRadian = minute / 5 + 1;
+            minuteHandRadian = minute / 5 + 1;
         } else if (minute % 5 <= 2) {
-            minuteToRadian = minute / 5;
+            minuteHandRadian = minute / 5;
         }
-        int n = -3 + minuteToRadian;
+        int n = -3 + minuteHandRadian;
         int m = 6;
-        int x = (int) (270 * Math.cos(n*Math.PI/m) + 400);
-        int y = (int) (270 * Math.sin(n*Math.PI/m) + 400);
+        int x = (int) (270 * Math.cos(n * Math.PI / m) + 400);
+        int y = (int) (270 * Math.sin(n * Math.PI / m) + 400);
+        ((Graphics2D) graphics).setStroke(new BasicStroke(5));
         graphics.drawLine(400, 400, x, y);
     }
 
-    private void hourHand(int hour, int minute) {
-        int minuteToRadian = 0;
+    private void hourHand(int minute, int hour) {
+        int n = -15 + 5 * timeToHourRadians(hour, minute) + timeToMinuteRadians(minute);
+        int m = 30;
+        int x = (int) (160 * Math.cos(n * Math.PI / m) + 400);
+        int y = (int) (160 * Math.sin(n * Math.PI / m) + 400);
+        ((Graphics2D) graphics).setStroke(new BasicStroke(10));
+        graphics.drawLine(400, 400, x, y);
+    }
+
+    public static int timeToHourRadians(int hour, int minute) {
+        if (hour < 0 || hour > 12) {
+            throw new IllegalArgumentException("Hour value needs to be an integer between 0-12");
+        }
+        return hour;
+    }
+
+    public static int timeToMinuteRadians(int minute) {
+        if (minute < 0 || minute > 60) {
+            throw new IllegalArgumentException("Minute value needs to be an integer between 0-60");
+        }
+        int minuteToRadian;
         if (minute % 12 >= 7) {
             minuteToRadian = minute / 12 + 1;
-        } else if (minute % 12 <= 6) {
+        } else {
             minuteToRadian = minute / 12;
         }
-        int hourToRadian = hour;
-        if (minute > 58) {
-            hourToRadian += 1;
-        }
-        int n = -15 + 5 * hourToRadian + minuteToRadian;
-        int m = 30;
-        int x = (int) (160 * Math.cos(n*Math.PI/m) + 400);
-        int y = (int) (160 * Math.sin(n*Math.PI/m) + 400);
-        graphics.drawLine(400, 400, x, y);
+        return minuteToRadian;
     }
 }
