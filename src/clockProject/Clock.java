@@ -53,8 +53,7 @@ public class Clock {
             minuteToRadian = minute / 12 + 1;
         } else if (minute % 12 <= 6) {
             minuteToRadian = minute / 12;
-        } //^ Repeated Code (DELETE)
-        System.out.println(minuteToRadian);
+        }
         int hourToRadian = hour;
         if (minute > 58) {
             hourToRadian += 1;
