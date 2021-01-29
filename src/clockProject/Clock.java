@@ -30,7 +30,7 @@ public class Clock {
         graphics.drawString("11", 195, 190);
 
         minuteHand(minute);
-        hourHand(hour);
+        hourHand(hour, minute);
     }
 
     private void minuteHand(int minute) {
@@ -42,20 +42,27 @@ public class Clock {
         }
         int n = -3 + minuteToRadian;
         int m = 6;
-        int x = (int) (350 * Math.cos(n*Math.PI/m) + 400);
-        int y = (int) (350 * Math.sin(n*Math.PI/m) + 400);
+        int x = (int) (270 * Math.cos(n*Math.PI/m) + 400);
+        int y = (int) (270 * Math.sin(n*Math.PI/m) + 400);
         graphics.drawLine(400, 400, x, y);
     }
 
-    private void hourHand(int hour) {
+    private void hourHand(int hour, int minute) {
+        int minuteToRadian = 0;
+        if (minute % 12 >= 7) {
+            minuteToRadian = minute / 12 + 1;
+        } else if (minute % 12 <= 6) {
+            minuteToRadian = minute / 12;
+        } //^ Repeated Code (DELETE)
+        System.out.println(minuteToRadian);
         int hourToRadian = hour;
         if (minute > 58) {
             hourToRadian += 1;
         }
-        int n = -3 + hourToRadian;
-        int m = 6;
-        int x = (int) (350 * Math.cos(n*Math.PI/m) + 400);
-        int y = (int) (350 * Math.sin(n*Math.PI/m) + 400);
+        int n = -15 + 5 * hourToRadian + minuteToRadian;
+        int m = 30;
+        int x = (int) (160 * Math.cos(n*Math.PI/m) + 400);
+        int y = (int) (160 * Math.sin(n*Math.PI/m) + 400);
         graphics.drawLine(400, 400, x, y);
     }
 }
