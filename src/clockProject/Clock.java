@@ -55,28 +55,33 @@ public class Clock {
     }
 
     public void redraw() {
+        ((Graphics2D) graphics).setStroke(new BasicStroke(1));
+        graphics.setColor(Color.white);
+        graphics.fillOval(145, 145, 500, 500);
+        ((Graphics2D) graphics).setStroke(new BasicStroke(5));
+        graphics.setColor(Color.black);
         drawMinuteHand(time.getMinute());
         drawHourHand(time.getHour(), time.getMinute());
     }
 
     private void drawCircleStructure() {
         setTimeCount += 1;
-        graphics.setFont(new Font("TimesRoman", Font.BOLD, 120));
+        graphics.setFont(new Font("TimesRoman", Font.BOLD, 80));
 
         graphics.drawOval(50, 50, 700, 700);
 
-        graphics.drawString("12", 335, 150);
-        graphics.drawString("1", 510, 190);
-        graphics.drawString("2", 620, 280);
-        graphics.drawString("3", 680, 430);
-        graphics.drawString("4", 620, 600);
-        graphics.drawString("5", 510, 700);
-        graphics.drawString("6", 370, 740);
+        graphics.drawString("12", 350, 120);
+        graphics.drawString("1", 540, 160);
+        graphics.drawString("2", 650, 270);
+        graphics.drawString("3", 700, 430);
+        graphics.drawString("4", 650, 590);
+        graphics.drawString("5", 530, 705);
+        graphics.drawString("6", 380, 740);
         graphics.drawString("7", 235, 705);
         graphics.drawString("8", 120, 610);
-        graphics.drawString("9", 70, 440);
-        graphics.drawString("10", 95, 290);
-        graphics.drawString("11", 195, 190);
+        graphics.drawString("9", 60, 440);
+        graphics.drawString("10", 85, 280);
+        graphics.drawString("11", 180, 175);
     }
 
     private void drawMinuteHand(int minute) {
@@ -88,8 +93,8 @@ public class Clock {
         }
         int n = -3 + minuteToRadian;
         int m = 6;
-        int x = (int) (270 * Math.cos(n * Math.PI / m) + 400);
-        int y = (int) (270 * Math.sin(n * Math.PI / m) + 400);
+        int x = (int) (245 * Math.cos(n * Math.PI / m) + 400);
+        int y = (int) (245 * Math.sin(n * Math.PI / m) + 400);
         ((Graphics2D) graphics).setStroke(new BasicStroke(5));
         graphics.drawLine(400, 400, x, y);
     }
