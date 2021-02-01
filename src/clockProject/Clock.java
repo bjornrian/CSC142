@@ -7,12 +7,12 @@ public class Clock {
 
     private Time time;
     private Integer setTimeCount = 0;
-    private final int PANEL_SIDE_LENGTH = 800;
     clockProject.DrawingPanel panel;
     Graphics graphics;
 
     public Clock() {
         time = new Time();
+        int PANEL_SIDE_LENGTH = 800;
         panel = new clockProject.DrawingPanel(PANEL_SIDE_LENGTH, PANEL_SIDE_LENGTH);
         graphics = panel.getGraphics();
         drawCircleStructure();
