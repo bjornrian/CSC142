@@ -100,7 +100,7 @@ public class Clock {
     }
 
     private void drawHourHand(int hour, int minute) {
-        int n = -15 + 5 * hour + minute / 12; //For every twelve minutes, pi/30 is added
+        int n = -15 + 5 * hour + minute / 12; //For every twelve minutes, pi/30 is added to angle
         int m = 30;
         int x = (int) (160 * Math.cos(n * Math.PI / m) + 400);
         int y = (int) (160 * Math.sin(n * Math.PI / m) + 400);
