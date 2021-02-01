@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class Clock {
 
+    Time time;
     private int hour;
     private int minute;
     int PANEL_SIDE_LENGTH = 800;
@@ -34,6 +35,10 @@ public class Clock {
         hourHand(minute, hour);
     }
 
+    public Clock() {
+
+    }
+
     private void minuteHand(int minute) {
         int minuteHandRadian = 0;
         if (minute % 5 >= 3) {
@@ -49,6 +54,7 @@ public class Clock {
         graphics.drawLine(400, 400, x, y);
     }
 
+
     private void hourHand(int minute, int hour) {
         int n = -15 + 5 * timeToHourRadians(hour, minute) + timeToMinuteRadians(minute);
         int m = 30;
@@ -58,6 +64,8 @@ public class Clock {
         graphics.drawLine(400, 400, x, y);
     }
 
+    //this method does only hour validation and nothing else. rename or rewrite
+    //should return Double
     public static int timeToHourRadians(int hour, int minute) {
         if (hour < 0 || hour > 12) {
             throw new IllegalArgumentException("Hour value needs to be an integer between 0-12");
@@ -76,5 +84,17 @@ public class Clock {
             minuteToRadian = minute / 12;
         }
         return minuteToRadian;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
+    public void redraw() {
+
     }
 }

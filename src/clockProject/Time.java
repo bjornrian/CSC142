@@ -5,57 +5,40 @@ public class Time {
         AM, PM
     }
 
-    private int hour;
-    private String minute;
+    private int hour;//needs to be Integer
+    private int minute;//needs to be Integer
     private DayPortion dayPortion;
 
     public Time(int hour, int minute, DayPortion dayPortion) {
-        if (hour > 12 || hour <= 0) {
-            throw new IllegalArgumentException("Hour value cannot be more than 12 or less than 0");
-        }
+        validateHour(hour);
         this.hour = hour;
 
-        String minuteString = String.valueOf(minute);
-        if (minute > 59 || minute < 0) {
-            throw new IllegalArgumentException("Minute value cannot be more than 59 or less than 0");
-        }
-        if (minute < 10) {
-            minuteString = "0" + String.valueOf(minute);
-        }
-        this.minute = minuteString;
+        validateMinute(minute);
+        this.minute = minute;
 
         this.dayPortion = dayPortion;
     }
 
     public int getHour() {
-        return hour;
+        return this.hour;
     }
 
-    public String getMinute() {
-        return minute;
+    public int getMinute() {
+        return this.minute;
     }
 
     public DayPortion getDayPortion() {
-        return dayPortion;
+        return this.dayPortion;
     }
 
     public void setHour(int hour) {
-        if (hour > 12 || hour <= 0) {
-            throw new IllegalArgumentException("Hour value cannot be more than 12 or less than 0");
-        }
+        validateHour(hour);
         this.hour = hour;
     }
 
     public void setMinute(int minute) {
-        String minuteString = String.valueOf(minute);
-        if (minute > 59 || minute < 0) {
-            throw new IllegalArgumentException("Minute value cannot be more than 59 or less than 0");
-        }
-        if (minute < 10) {
-            minuteString = "0" + minute;
-        }
-        this.minute = String.valueOf(minuteString);
-
+        validateMinute(minute);
+        this.minute = minute;
     }
 
     public void setDayPortion(DayPortion dayPortion) {
@@ -63,10 +46,24 @@ public class Time {
     }
 
     public String toString() {
-        return (hour + ":" + minute + dayPortion);
+        if (minute >= 0 && minute <= 9) {
+            return (hour + ":0" + minute + dayPortion);
+        } else {
+            return (hour + ":" + minute + dayPortion);
+        }
     }
 
+    private void validateHour(int hour) {
+        if (hour > 12 || hour <= 0) {
+            throw new IllegalArgumentException("Hour value cannot be more than 12 or less than 0");
+        }
+    }
 
+    private void validateMinute(int minute) {
+        if (minute > 59 || minute < 0) {
+            throw new IllegalArgumentException("Minute value cannot be more than 59 or less than 0");
+        }
+    }
 }
 
 
