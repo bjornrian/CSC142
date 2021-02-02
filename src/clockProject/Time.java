@@ -1,5 +1,13 @@
 package clockProject;
 
+/**
+ * The Time class creates objects of Time, and has get and set methods related
+ * to minute, hour, and day portion parameters for the Time objects. The toString
+ * method prints times such as "12:43PM".
+ *
+ * @author  Bjorn Rian
+ * @version 2/2/21
+ */
 public class Time {
     public enum DayPortion {
         AM, PM
@@ -9,8 +17,7 @@ public class Time {
     private Integer minute = 0;
     private DayPortion dayPortion = DayPortion.AM;
 
-    public Time() {
-    }
+    public Time() {} //Sets default clock with the variables of Time class
 
     public Time(Integer hour, Integer minute, DayPortion dayPortion) {
         this.setHour(hour);

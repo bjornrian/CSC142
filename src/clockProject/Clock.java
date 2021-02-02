@@ -3,6 +3,13 @@ package clockProject;
 import java.awt.Graphics2D;
 import java.awt.*;
 
+/**
+ * The Clock class creates Clock objects that draw a default clock showing 12:00,
+ * or different times based on the Time object.
+ *
+ * @author  Bjorn Rian
+ * @version 2/2/21
+ */
 public class Clock {
 
     private Time time;
@@ -10,13 +17,17 @@ public class Clock {
     clockProject.DrawingPanel panel;
     Graphics graphics;
 
+    /**
+     * Creates a clock with a default Time object (defaulted to 12:00 AM).
+     * Creates the graphics needed to draw the clock.
+     */
     public Clock() {
-        time = new Time();
+        time = new Time(); //Default Time object
         int PANEL_SIDE_LENGTH = 800;
         panel = new clockProject.DrawingPanel(PANEL_SIDE_LENGTH, PANEL_SIDE_LENGTH);
         graphics = panel.getGraphics();
-        drawCircleStructure();
-        redraw();
+        drawClockStructure();
+        this.redraw();
     }
 
     public Time getTime() {
@@ -26,21 +37,34 @@ public class Clock {
     public void setTime(Time time) {
         setTimeCount += 1;
         this.time = time;
+        this.redraw();
     }
 
+    /**
+     * @return the amount of times that a time is set for the clock object,
+     * including the first time that the clock is set.
+     */
     public Integer getSetTimeCount() {
         return setTimeCount;
     }
 
-    //this method does only hour validation and nothing else. rename or rewrite
-    //should return Double
+    /**
+     * Hours are converted into the appropriate amount of radians in a circle.
+     *
+     * @return a radian value that is hour * PI/6 (hour/12th's of a circle)
+     */
     public static double timeToHourRadians(int hour) {
         if (hour < 0 || hour > 12) {
             throw new IllegalArgumentException("Hour value needs to be an integer between 0-12");
         }
-        return hour;
+        return hour * (Math.PI/6);
     }
 
+    /**
+     * Minutes are converted into the appropriate amount of radians in a circle.
+     *
+     * @return Returns a radian value that is minuteToRadian * 2PI/60 (minuteToRadian/60th's of a circle)
+     */
     public static double timeToMinuteRadians(int minute) {
         if (minute < 0 || minute > 60) {
             throw new IllegalArgumentException("Minute value needs to be an integer between 0-60");
@@ -51,10 +75,14 @@ public class Clock {
         } else {
             minuteToRadian = minute / 12;
         }
-        return minuteToRadian;
+        return minuteToRadian * (Math.PI/30);
     }
 
-    public void redraw() {
+    /**
+     * A white circle is drawn over the previous minute and hour hands,
+     * and a new set of hands is printed on top.
+     */
+    private void redraw() {
         ((Graphics2D) graphics).setStroke(new BasicStroke(1));
         graphics.setColor(Color.white);
         graphics.fillOval(145, 145, 500, 500);
@@ -64,7 +92,7 @@ public class Clock {
         drawHourHand(time.getHour(), time.getMinute());
     }
 
-    private void drawCircleStructure() {
+    private void drawClockStructure() {
         setTimeCount += 1;
         graphics.setFont(new Font("TimesRoman", Font.BOLD, 80));
 
