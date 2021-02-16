@@ -29,7 +29,9 @@ public class Matrix {
      */
     public void setValue(int row, int col, double value) {
         // Why don't we have to test row/col for validity?
-        doubleMatrix[row][col] = value;
+        validateRow(row);
+        validateColumn(col);
+        this.doubleMatrix[row][col] = value;
     }
 
     /** returns the value of a particular element in the matrix
@@ -37,6 +39,8 @@ public class Matrix {
      * @param col the column of the element; must be a valid column
      */
     public double getValue(int row, int col) {
+        validateRow(row);
+        validateColumn(col);
         return doubleMatrix[row][col];
     }
 
@@ -46,7 +50,9 @@ public class Matrix {
      * @param r2 the other row to swap; must be a valid row
      */
     public void swapRows(int r1, int r2) {
-        double[] saveRow = new double[];
+        validateRow(r1);
+        validateRow(r2);
+        double[] saveRow = new double[]{};
         saveRow = doubleMatrix[r1];
         doubleMatrix[r1] = doubleMatrix[r2];
         doubleMatrix[r2] = saveRow;
@@ -58,6 +64,7 @@ public class Matrix {
      * @throws IllegalArgumentException if multiple is 0
      */
     public void multiplyRow(double multiple, int row) {
+        validateRow(row);
         if (multiple == 0) {
             throw new IllegalArgumentException("Multiplier cannot equal 0");
         }
@@ -71,6 +78,8 @@ public class Matrix {
      * @param r2 the row to add into; must be a valid row.  This row will change.
      */
     public void addRows (int r2, int r1) {
+        validateRow(r2);
+        validateRow(r1);
         double[] addMatrix = new double[doubleMatrix[r2].length + doubleMatrix[r1].length];
         System.arraycopy(doubleMatrix[r2], 0, addMatrix, 0, doubleMatrix[r2].length);
         System.arraycopy(doubleMatrix[r1], 0, addMatrix, doubleMatrix[r2].length, doubleMatrix[r1].length);
@@ -84,7 +93,7 @@ public class Matrix {
      * @return the old row
      */
     public double[] replace(double[] row, int rIdx){
-
+        return null;
     }
 
     /**
@@ -93,14 +102,26 @@ public class Matrix {
      * @return the matrix sum of this + m
      */
 
-    public Matrix sum(Matrix m){
+    /*public Matrix sum(Matrix m){
 
-    }
+    }*/
 
 
     /** Return this matrix as a String of 3 rows of numbers in 4 columns
      */
-    public String toString() {
+    /*public String toString() {
 
+    }*/
+
+    private void validateRow(int row) {
+        if(row < 0 || row > ROW - 1) {
+            throw new IllegalArgumentException("Invalid row value");
+        }
+    }
+
+    private void validateColumn(int col) {
+        if(col < 0 || col > COL - 1) {
+            throw new IllegalArgumentException("Invalid column value");
+        }
     }
 }
