@@ -52,7 +52,7 @@ public class Matrix {
     public void swapRows(int r1, int r2) {
         validateRow(r1);
         validateRow(r2);
-        double[] saveRow = new double[]{};
+        double[] saveRow;
         saveRow = doubleMatrix[r1];
         doubleMatrix[r1] = doubleMatrix[r2];
         doubleMatrix[r2] = saveRow;
@@ -68,7 +68,7 @@ public class Matrix {
         if (multiple == 0) {
             throw new IllegalArgumentException("Multiplier cannot equal 0");
         }
-        for (int i = 0; i < doubleMatrix.length; i++) {
+        for (int i = 0; i < COL; i++) {
             doubleMatrix[row][i] *= multiple;
         }
     }
@@ -80,10 +80,9 @@ public class Matrix {
     public void addRows (int r2, int r1) {
         validateRow(r2);
         validateRow(r1);
-        double[] addMatrix = new double[doubleMatrix[r2].length + doubleMatrix[r1].length];
-        System.arraycopy(doubleMatrix[r2], 0, addMatrix, 0, doubleMatrix[r2].length);
-        System.arraycopy(doubleMatrix[r1], 0, addMatrix, doubleMatrix[r2].length, doubleMatrix[r1].length);
-        doubleMatrix[r2] = addMatrix;
+        for (int i = 0; i < COL; i++) {
+            doubleMatrix[r2][i] += doubleMatrix[r1][i];
+        }
     }
 
     /**
@@ -93,7 +92,11 @@ public class Matrix {
      * @return the old row
      */
     public double[] replace(double[] row, int rIdx){
-        return null;
+        validateColumn(row.length - 1);
+        validateRow(rIdx);
+        double[] oldRow = doubleMatrix[rIdx];
+        doubleMatrix[rIdx] = row;
+        return oldRow;
     }
 
     /**
@@ -102,16 +105,26 @@ public class Matrix {
      * @return the matrix sum of this + m
      */
 
-    /*public Matrix sum(Matrix m){
-
-    }*/
+    public Matrix sum(Matrix m){
+        for (int i = 0; i < ROW; i++) {
+            for (int j = 0; j < COL; j++) {
+                m[i][j] += doubleMatrix[i][j];
+            }
+        }
+        return m;
+    }
 
 
     /** Return this matrix as a String of 3 rows of numbers in 4 columns
      */
-    /*public String toString() {
-
-    }*/
+    public String toString() {
+        return (String.valueOf(doubleMatrix[0][0]) + "\t" + String.valueOf(doubleMatrix[0][1]) + "\t" +
+                String.valueOf(doubleMatrix[0][2]) + "\t" + String.valueOf(doubleMatrix[0][3]) + "\n" +
+                String.valueOf(doubleMatrix[1][0]) + "\t" + String.valueOf(doubleMatrix[1][1]) + "\t" +
+                String.valueOf(doubleMatrix[1][2]) + "\t" + String.valueOf(doubleMatrix[1][3]) + "\n" +
+                String.valueOf(doubleMatrix[2][0]) + "\t" + String.valueOf(doubleMatrix[2][1]) + "\t" +
+                String.valueOf(doubleMatrix[2][2]) + "\t" + String.valueOf(doubleMatrix[2][3]) + "\n");
+    }
 
     private void validateRow(int row) {
         if(row < 0 || row > ROW - 1) {

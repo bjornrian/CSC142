@@ -36,6 +36,57 @@ public class MatrixTest {
         assertEquals(2, testMatrix.getValue(2, 3), DELTA_VALUE);
     }
 
+    @Test
+    public void testMultiplyRow() {
+        Matrix testMatrix = buildMatrix();
+        testMatrix.multiplyRow(2, 1);
+        assertEquals(2, testMatrix.getValue(0, 0), DELTA_VALUE);
+        assertEquals(4, testMatrix.getValue(0, 1), DELTA_VALUE);
+        assertEquals(1, testMatrix.getValue(0, 2), DELTA_VALUE);
+        assertEquals(2, testMatrix.getValue(0, 3), DELTA_VALUE);
+
+        assertEquals(6, testMatrix.getValue(1, 0), DELTA_VALUE);
+        assertEquals(8, testMatrix.getValue(1, 1), DELTA_VALUE);
+        assertEquals(12, testMatrix.getValue(1, 2), DELTA_VALUE);
+        assertEquals(8, testMatrix.getValue(1, 3), DELTA_VALUE);
+    }
+
+    @Test
+    public void testAddRow() {
+        Matrix testMatrix = buildMatrix();
+        testMatrix.addRows(1, 0);
+        assertEquals(2, testMatrix.getValue(0, 0), DELTA_VALUE);
+        assertEquals(4, testMatrix.getValue(0, 1), DELTA_VALUE);
+        assertEquals(1, testMatrix.getValue(0, 2), DELTA_VALUE);
+        assertEquals(2, testMatrix.getValue(0, 3), DELTA_VALUE);
+
+        assertEquals(5, testMatrix.getValue(1, 0), DELTA_VALUE);
+        assertEquals(8, testMatrix.getValue(1, 1), DELTA_VALUE);
+        assertEquals(7, testMatrix.getValue(1, 2), DELTA_VALUE);
+        assertEquals(6, testMatrix.getValue(1, 3), DELTA_VALUE);
+    }
+
+    @Test
+    public void testReplace() {
+        Matrix testMatrix = buildMatrix();
+        double[] replacementRow = {2, 3, 2, 5};
+        testMatrix.replace(replacementRow, 1);
+        assertEquals(2, testMatrix.getValue(1, 0), DELTA_VALUE);
+        assertEquals(3, testMatrix.getValue(1, 1), DELTA_VALUE);
+        assertEquals(2, testMatrix.getValue(1, 2), DELTA_VALUE);
+        assertEquals(5, testMatrix.getValue(1, 3), DELTA_VALUE);
+    }
+
+    @Test
+    public void testSum() {
+        Matrix testMatrix = buildMatrix();
+        testMatrix.sum(buildMatrix());
+        assertEquals(2, testMatrix.getValue(1, 0), DELTA_VALUE);
+        assertEquals(3, testMatrix.getValue(1, 1), DELTA_VALUE);
+        assertEquals(2, testMatrix.getValue(1, 2), DELTA_VALUE);
+        assertEquals(5, testMatrix.getValue(1, 3), DELTA_VALUE);
+    }
+
     private Matrix buildMatrix() {
         Matrix testMatrix = new Matrix();
         testMatrix.setValue(0, 0, 2);
