@@ -9,6 +9,7 @@ public class DateRange {
     private Date endDate;
 
     public DateRange(Date beginDate, Date endDate) {
+        validateInput(beginDate, endDate);
         this.beginDate = beginDate;
         this.endDate = endDate;
     }
@@ -27,5 +28,26 @@ public class DateRange {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    /**
+     * In the toString method, show the start and end of the date range.
+     * Do not duplicate code from the Date toString method; leverage it instead.
+     *
+     * @return start and end of the date range
+     */
+    public String toString() {
+        //todo
+        return "";
+    }
+
+    /**
+     * Throw an IllegalArgumentException if either Date reference is null.
+     *
+     * @param beginDate
+     * @param endDate
+     */
+    private void validateInput(Date beginDate, Date endDate) {
+        //todo
     }
 }
