@@ -1,4 +1,4 @@
-package labs;
+package labs.matrix;
 
 /** class to model a 3 x 4 matrix of doubles <br>
  * Supports Gaussian row operations

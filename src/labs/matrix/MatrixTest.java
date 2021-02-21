@@ -1,5 +1,6 @@
-package labs;
+package labs.matrix;
 
+import labs.matrix.Matrix;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
