@@ -104,26 +104,32 @@ public class Matrix {
      * @param m the 2nd Matrix
      * @return the matrix sum of this + m
      */
-
     public Matrix sum(Matrix m){
+        Matrix resultMatrix = new Matrix();
         for (int i = 0; i < ROW; i++) {
             for (int j = 0; j < COL; j++) {
-                m[i][j] += doubleMatrix[i][j];
+                resultMatrix.doubleMatrix[i][j] =
+                m.doubleMatrix[i][j] + this.doubleMatrix[i][j];
             }
         }
-        return m;
+        return resultMatrix;
     }
 
 
-    /** Return this matrix as a String of 3 rows of numbers in 4 columns
+    /**
+     * Return this matrix as a String of 3 rows of numbers in 4 columns
      */
     public String toString() {
-        return (String.valueOf(doubleMatrix[0][0]) + "\t" + String.valueOf(doubleMatrix[0][1]) + "\t" +
-                String.valueOf(doubleMatrix[0][2]) + "\t" + String.valueOf(doubleMatrix[0][3]) + "\n" +
-                String.valueOf(doubleMatrix[1][0]) + "\t" + String.valueOf(doubleMatrix[1][1]) + "\t" +
-                String.valueOf(doubleMatrix[1][2]) + "\t" + String.valueOf(doubleMatrix[1][3]) + "\n" +
-                String.valueOf(doubleMatrix[2][0]) + "\t" + String.valueOf(doubleMatrix[2][1]) + "\t" +
-                String.valueOf(doubleMatrix[2][2]) + "\t" + String.valueOf(doubleMatrix[2][3]) + "\n");
+        StringBuffer buffer = new StringBuffer();
+        for (int i = 0; i < ROW; i++) {
+            for (int j = 0; j < COL; j++) {
+                buffer.append(" | ")
+                        .append(String.valueOf(doubleMatrix[i][j]));
+            }
+            buffer.append(" |\n");
+        }
+
+        return buffer.toString();
     }
 
     private void validateRow(int row) {

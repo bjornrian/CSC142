@@ -79,12 +79,28 @@ public class MatrixTest {
 
     @Test
     public void testSum() {
-        Matrix testMatrix = buildMatrix();
-        testMatrix.sum(buildMatrix());
-        assertEquals(2, testMatrix.getValue(1, 0), DELTA_VALUE);
-        assertEquals(3, testMatrix.getValue(1, 1), DELTA_VALUE);
-        assertEquals(2, testMatrix.getValue(1, 2), DELTA_VALUE);
-        assertEquals(5, testMatrix.getValue(1, 3), DELTA_VALUE);
+        Matrix firstMatrix = buildMatrix();
+        Matrix secondMatrix = buildMatrix();
+        Matrix resultMatrix = firstMatrix.sum(secondMatrix);
+        assertEquals(4, resultMatrix.getValue(0, 0), DELTA_VALUE);
+        assertEquals(8, resultMatrix.getValue(0, 1), DELTA_VALUE);
+        assertEquals(2, resultMatrix.getValue(0, 2), DELTA_VALUE);
+        assertEquals(4, resultMatrix.getValue(0, 3), DELTA_VALUE);
+        assertEquals(6, resultMatrix.getValue(1, 0), DELTA_VALUE);
+        assertEquals(8, resultMatrix.getValue(1, 1), DELTA_VALUE);
+        assertEquals(12, resultMatrix.getValue(1, 2), DELTA_VALUE);
+        assertEquals(8, resultMatrix.getValue(1, 3), DELTA_VALUE);
+        assertEquals(2, resultMatrix.getValue(2, 0), DELTA_VALUE);
+        assertEquals(8, resultMatrix.getValue(2, 1), DELTA_VALUE);
+        assertEquals(0, resultMatrix.getValue(2, 2), DELTA_VALUE);
+        assertEquals(16, resultMatrix.getValue(2, 3), DELTA_VALUE);
+    }
+
+    @Test
+    public void testToString() {
+        Matrix matrix = buildMatrix();
+        String result = matrix.toString();
+        System.out.println(result);
     }
 
     private Matrix buildMatrix() {
