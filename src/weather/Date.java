@@ -6,7 +6,7 @@ package weather;
  * To practice with  objects, we  will create  our  own  Date  object
  * that  consists  of  a  year,  a  month,  and  a  day.
  * We  will provide simple, standard set/get methods for these.
- *
+ * <p>
  * Throw an IllegalArgumentException if the year is negative,
  * month is outside the range 1...12, or day is outside the range 1...31.
  * You are not responsible for leap year checks or month-length checks
@@ -54,22 +54,44 @@ public class Date {
      */
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append((month < 10 ? "0" : "") + String.valueOf(month))
-                .append("/")
-                .append((day < 10 ? "0" : "") + String.valueOf(day))
-                .append("/")
-                .append(String.valueOf(year).substring(2));
+        builder.append((month < 10 ? "0" : "") + String.valueOf(month)).append("/").append((day < 10 ? "0" : "") + String.valueOf(day))
+                .append("/").append(String.valueOf(year).substring(2));
         return builder.toString();
     }
 
     public boolean equals(Date date) {
-        return this.year == date.getYear() &&
-                this.month == date.getMonth() &&
-                this.day == date.getDay();
+        return this.year == date.getYear() && this.month == date.getMonth() && this.day == date.getDay();
+    }
+
+    /**
+     * Compares this date to that date.
+     *
+     * @param that
+     * @return -1 if that is before, 1 if that is after, 0 if they are equal
+     */
+    public int compare(Date that) {
+        final int BEFORE = -1;
+        final int AFTER = 1;
+        final int SAME = 0;
+
+        if (that.getYear() < this.year) {
+            return BEFORE;
+        } else if(that.getYear() > this.year) {
+            return AFTER;
+        } else if(that.getMonth() < this.month) {
+            return BEFORE;
+        } else if(that.getMonth() > this.month) {
+            return AFTER;
+        } else if(that.getDay() < this.day) {
+            return BEFORE;
+        } else if(that.getDay() > this.day) {
+            return AFTER;
+        }
+        return SAME;
     }
 
     private void validateInput(int year, int month, int day) {
-        if(year < 1 || month < 1 || month > 12 || day < 1 || day > 31) {
+        if (year < 1 || month < 1 || month > 12 || day < 1 || day > 31) {
             throw new IllegalArgumentException("Invalid date");
         }
     }

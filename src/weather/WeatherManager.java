@@ -35,6 +35,16 @@ import java.util.Scanner;
 public class WeatherManager {
     private static final int NOT_FOUND = -1;
     private static final String WEATHER_FILE = "weather\\SeattleWeather.txt";
+    public static final int INDEX_YEAR = 0;
+    public static final int INDEX_MONTH = 1;
+    public static final int INDEX_DAY = 2;
+    public static final int INDEX_TEMP_MAX = 3;
+    public static final int INDEX_TEMP_AVG = 4;
+    public static final int INDEX_TEMP_MIN = 5;
+    public static final int INDEX_HUMIDITY_AVG = 10;
+    public static final int INDEX_WIND_AVG = 13;
+    public static final int INDEX_PRECIPITATION = 18;
+
     private WeatherDay[] weatherData;
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -58,6 +68,22 @@ public class WeatherManager {
 
     private void processWeatherData(String nextLine) {
         System.out.println("nextLine = " + nextLine);
+        String[] line = nextLine.split(",");
+        WeatherDay weatherDay = buildWeatherDay(line);
+        System.out.println(weatherDay.toString());
+    }
+
+    private WeatherDay buildWeatherDay(String[] line) {
+        Date date = new Date(Integer.valueOf(line[INDEX_YEAR]),
+                Integer.valueOf(line[INDEX_MONTH]),
+                Integer.valueOf(line[INDEX_DAY]));
+        int tempHigh = Integer.valueOf(line[INDEX_TEMP_MAX]);
+        double tempAvg = Double.valueOf(line[INDEX_TEMP_AVG]);
+        int tempLow = Integer.valueOf(line[INDEX_TEMP_MIN]);
+        double humidityAvg = Double.valueOf(line[INDEX_HUMIDITY_AVG]);
+        double windAvg = Double.valueOf(line[INDEX_WIND_AVG]);
+        double precipitation = Double.valueOf(line[INDEX_PRECIPITATION]);
+        return new WeatherDay(date, tempHigh, tempAvg, tempLow, humidityAvg, windAvg, precipitation);
     }
 
     public int getWeatherDayCount() {

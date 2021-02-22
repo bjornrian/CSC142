@@ -42,4 +42,36 @@ public class DateTest {
         Date date3 = new Date(1975, 2, 31);
         assertFalse(date1.equals(date3));
     }
+
+    @Test
+    public void testCompare() {
+        //same date
+        Date thisDate = new Date(1973, 1, 24);
+        Date thatDate = new Date(1973, 1, 24);
+        assertEquals(0, thisDate.compare(thatDate));
+        //earlier year
+        thisDate = new Date(1973, 1, 24);
+        thatDate = new Date(1972, 1, 24);
+        assertEquals(-1, thisDate.compare(thatDate));
+        //later year
+        thisDate = new Date(1973, 1, 24);
+        thatDate = new Date(1974, 1, 24);
+        assertEquals(1, thisDate.compare(thatDate));
+        //same year, earlier month
+        thisDate = new Date(1973, 2, 24);
+        thatDate = new Date(1973, 1, 24);
+        assertEquals(-1, thisDate.compare(thatDate));
+        //same year, later month
+        thisDate = new Date(1973, 1, 24);
+        thatDate = new Date(1973, 12, 24);
+        assertEquals(1, thisDate.compare(thatDate));
+        //same year, same month, earlier day
+        thisDate = new Date(1973, 1, 24);
+        thatDate = new Date(1973, 1, 2);
+        assertEquals(-1, thisDate.compare(thatDate));
+        //same year, same month, later day
+        thisDate = new Date(1973, 12, 2);
+        thatDate = new Date(1973, 12, 24);
+        assertEquals(1, thisDate.compare(thatDate));
+    }
 }
