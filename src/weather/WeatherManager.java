@@ -45,6 +45,7 @@ public class WeatherManager {
     public static final int INDEX_WIND_AVG = 13;
     public static final int INDEX_PRECIPITATION = 18;
 
+    //the collection of weather data objects, sorted by date
     private WeatherDay[] weatherData;
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -54,23 +55,62 @@ public class WeatherManager {
 
     public WeatherManager(File weatherDataFile) throws FileNotFoundException {
         Scanner scanner = new Scanner(weatherDataFile);
+        //first row tells us how many rows we have
         int numberOfRows = scanner.nextInt();
-        System.out.println("numberOfRows = " + numberOfRows);
+        //build our empty collection with the correct number of rows
         weatherData = new WeatherDay[numberOfRows];
         scanner.nextLine();
+        //second row is our header line
         String headerLine = scanner.nextLine();
         System.out.println("headerLine = " + headerLine);
+        //read the rest of the lines into our collection
+        int index = 0;
         while(scanner.hasNextLine()) {
-            processWeatherData(scanner.nextLine());
+            processWeatherData(scanner.nextLine(), index++);
         }
         scanner.close();
+
+        //sort our collection
+        sortWeatherData();
+        printWeatherData();
     }
 
-    private void processWeatherData(String nextLine) {
-        System.out.println("nextLine = " + nextLine);
+    private void printWeatherData() {
+        for(int i = 0; i < weatherData.length; i++) {
+            System.out.println(weatherData[i].toString());
+        }
+    }
+
+    /**
+     * From https://www.geeksforgeeks.org/insertion-sort/
+     */
+    private void sortWeatherData() {
+        for(int i = 1; i < weatherData.length; i++) {
+            WeatherDay key = weatherData[i];
+            int j = i - 1;
+              /* Move elements of arr[0..i-1], that are
+               greater/later than key, to one position ahead
+               of their current position */
+            while (j >= 0 && weatherData[j].getDate().compare(key.getDate()) < 0) {
+                weatherData[j + 1] = weatherData[j];
+                j = j - 1;
+            }
+            weatherData[j + 1] = key;
+        }
+    }
+
+    /**
+     * Receive a line from a weather data file.
+     * Build a WeatherDay object from the line.
+     * Insert the object into our collection.
+     *
+     * @param nextLine
+     * @param index
+     */
+    private void processWeatherData(String nextLine, int index) {
         String[] line = nextLine.split(",");
         WeatherDay weatherDay = buildWeatherDay(line);
-        System.out.println(weatherDay.toString());
+        weatherData[index] = weatherDay;
     }
 
     private WeatherDay buildWeatherDay(String[] line) {
