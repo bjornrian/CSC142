@@ -72,7 +72,26 @@ public class WeatherManager {
 
         //sort our collection
         sortWeatherData();
-        printWeatherData();
+//        printWeatherData();
+    }
+
+    public int getWeatherDayCount() {
+        return weatherData.length;
+    }
+
+    public WeatherDay getWeatherDay(int index) {
+        return weatherData[index];
+    }
+
+    public int findWeatherDay(Date date) {
+        for (int i = 0; i < weatherData.length; i++) {
+
+            WeatherDay day = weatherData[i];
+            if (day.getDate().equals(date)) {
+                return i;
+            }
+        }
+        return NOT_FOUND;
     }
 
     private void printWeatherData() {
@@ -125,24 +144,4 @@ public class WeatherManager {
         double precipitation = Double.valueOf(line[INDEX_PRECIPITATION]);
         return new WeatherDay(date, tempHigh, tempAvg, tempLow, humidityAvg, windAvg, precipitation);
     }
-
-    public int getWeatherDayCount() {
-        return weatherData.length;
-    }
-
-    public WeatherDay getWeatherDay(int index) {
-        return weatherData[index];
-    }
-
-    public int findWeatherDay(Date date) {
-        for (int i = 0; i < weatherData.length; i++) {
-
-            WeatherDay day = weatherData[i];
-            if (day.getDate().equals(date)) {
-                return i;
-            }
-        }
-        return NOT_FOUND;
-    }
-
 }

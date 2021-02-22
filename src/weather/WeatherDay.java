@@ -123,12 +123,12 @@ public class WeatherDay {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("Date: ").append(date);
-//        builder.append("\nHighest Temperature: ").append(tempHigh);
-//        builder.append("\nAverage Temperature: ").append(tempAvg);
-//        builder.append("\nLowest Temperature: ").append(tempLow);
-//        builder.append("\nAverage Humidity: ").append(humidityAvg);
-//        builder.append("\nAverage Wind Speed: ").append(windAvg);
-//        builder.append("\nPrecipitation: ").append(precipitation);
+        builder.append("\nHighest Temperature: ").append(tempHigh);
+        builder.append("\nAverage Temperature: ").append(tempAvg);
+        builder.append("\nLowest Temperature: ").append(tempLow);
+        builder.append("\nAverage Humidity: ").append(humidityAvg);
+        builder.append("\nAverage Wind Speed: ").append(windAvg);
+        builder.append("\nPrecipitation: ").append(precipitation);
 
         return builder.toString();
     }
