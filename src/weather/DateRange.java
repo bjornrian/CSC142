@@ -5,29 +5,29 @@ package weather;
  * this is useful in describing date ranges.
  */
 public class DateRange {
-    private Date beginDate;
-    private Date endDate;
+    private Date start;
+    private Date end;
 
-    public DateRange(Date beginDate, Date endDate) {
-        validateInput(beginDate, endDate);
-        this.beginDate = beginDate;
-        this.endDate = endDate;
+    public DateRange(Date start, Date end) {
+        validateInput(start, end);
+        this.start = start;
+        this.end = end;
     }
 
-    public Date getBeginDate() {
-        return beginDate;
+    public Date getStart() {
+        return this.start;
     }
 
-    public void setBeginDate(Date beginDate) {
-        this.beginDate = beginDate;
+    public void setStart(Date start) {
+        this.start = start;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public Date getEnd() {
+        return this.end;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setEnd(Date end) {
+        this.end = end;
     }
 
     /**
@@ -37,8 +37,8 @@ public class DateRange {
      * @return start and end of the date range
      */
     public String toString() {
-        //todo
-        return "";
+        return "Start:" + this.start + "\n" +
+                "End:" + this.end;
     }
 
     /**
@@ -48,6 +48,11 @@ public class DateRange {
      * @param endDate
      */
     private void validateInput(Date beginDate, Date endDate) {
-        //todo
+        if (beginDate == null) {
+            throw new IllegalArgumentException("The beginning date cannot equal null");
+        }
+        if (endDate == null) {
+            throw new IllegalArgumentException("The ending date cannot equal null");
+        }
     }
 }
