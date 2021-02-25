@@ -146,9 +146,9 @@ public class WeatherManager {
         return tempIndex;
     }
 
-    public DateRange calcLongestWarmingTrend(int year) {
+    //public DateRange calcLongestWarmingTrend(int year) {
 
-    }
+    //}
 
     private void printWeatherData() {
         for(int i = 0; i < weatherDays.length; i++) {
