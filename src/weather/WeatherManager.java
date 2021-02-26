@@ -46,7 +46,7 @@ public class WeatherManager {
     public static final int INDEX_PRECIPITATION = 18;
 
     //the collection of weather data objects, sorted by date
-    private WeatherDay[] weatherDays;
+    private WeatherDay[] weatherData;
 
     public static void main(String[] args) throws FileNotFoundException {
         File weatherData = new File(WEATHER_FILE);
@@ -58,7 +58,7 @@ public class WeatherManager {
         //first row tells us how many rows we have
         int numberOfRows = scanner.nextInt();
         //build our empty collection with the correct number of rows
-        weatherDays = new WeatherDay[numberOfRows];
+        weatherData = new WeatherDay[numberOfRows];
         //finish the first line
         scanner.nextLine();
         //second row is our header line. Ignore it.
@@ -74,22 +74,32 @@ public class WeatherManager {
 
         //sort our collection
         sortWeatherDateByDate();
-        printWeatherData();
-        //System.out.println(calcLongestWarmingTrend(2018));;
+        //printWeatherData();
+
+        //Use the available functions here:
+
+        System.out.println("getWeatherDayCount: " + getWeatherDayCount());
+        System.out.println("getWeatherDay: " + getWeatherDay(2).toString());
+        System.out.println("findWeatherDay: " + findWeatherDay(new Date(2018, 8, 16)));
+        System.out.println("calcAvgHighTemp: " + calcAvgHighTemp(2018, 5));
+        System.out.println("calcAvgLowTemp: " + calcAvgLowTemp(2019, 1));
+        System.out.println("calcRainTotal: " + calcRainTotal(2018, 3));
+        System.out.println("calcRainiestMonth: " + calcRainiestMonth(2018));
+        System.out.println("getLongestWarmingTrend" + getLongestWarmingTrend(2018));
     }
 
     public int getWeatherDayCount() {
-        return weatherDays.length;
+        return weatherData.length;
     }
 
     public WeatherDay getWeatherDay(int index) {
-        return weatherDays[index];
+        return weatherData[index];
     }
 
     public int findWeatherDay(Date date) {
-        for (int i = 0; i < weatherDays.length; i++) {
+        for (int i = 0; i < weatherData.length; i++) {
 
-            WeatherDay day = weatherDays[i];
+            WeatherDay day = weatherData[i];
             if (day.getDate().equals(date)) {
                 return i;
             }
@@ -98,12 +108,11 @@ public class WeatherManager {
     }
 
     public double calcAvgHighTemp(int year, int month) {
-        //todo
         double accumulator = 0;
         int divider = 0;
-        for (int i = 0; i < weatherDays.length; i++) {
-            if (weatherDays[i].getDate().getYear() == year && weatherDays[i].getDate().getMonth() == month) {
-                accumulator += weatherDays[i].getTempHigh();
+        for (int i = 0; i < weatherData.length; i++) {
+            if (weatherData[i].getDate().getYear() == year && weatherData[i].getDate().getMonth() == month) {
+                accumulator += weatherData[i].getTempHigh();
                 divider++;
             }
         }
@@ -111,12 +120,11 @@ public class WeatherManager {
     }
 
     public double calcAvgLowTemp(int year, int month) {
-        //todo
         double accumulator = 0;
         int divider = 0;
-        for (int i = 0; i < weatherDays.length; i++) {
-            if (weatherDays[i].getDate().getYear() == year && weatherDays[i].getDate().getMonth() == month) {
-                accumulator += weatherDays[i].getTempLow();
+        for (int i = 0; i < weatherData.length; i++) {
+            if (weatherData[i].getDate().getYear() == year && weatherData[i].getDate().getMonth() == month) {
+                accumulator += weatherData[i].getTempLow();
                 divider++;
             }
         }
@@ -125,9 +133,9 @@ public class WeatherManager {
 
     public double calcRainTotal(int year, int month) {
         double accumulator = 0;
-        for (int i = 0; i < weatherDays.length; i++) {
-            if (weatherDays[i].getDate().getYear() == year && weatherDays[i].getDate().getMonth() == month) {
-                accumulator += weatherDays[i].getPrecipitation();
+        for (int i = 0; i < weatherData.length; i++) {
+            if (weatherData[i].getDate().getYear() == year && weatherData[i].getDate().getMonth() == month) {
+                accumulator += weatherData[i].getPrecipitation();
             }
         }
         return accumulator;
@@ -136,15 +144,15 @@ public class WeatherManager {
     public int calcRainiestMonth(int year) {
         double tempPrecipitation = 0;
         int tempIndex = 0;
-        for (int i = 0; i < weatherDays.length; i++) {
-            if (weatherDays[i].getDate().getYear() == year) {
-                if (weatherDays[i].getPrecipitation() > tempPrecipitation) {
-                    tempPrecipitation = weatherDays[i].getPrecipitation();
+        for (int i = 0; i < weatherData.length; i++) {
+            if (weatherData[i].getDate().getYear() == year) {
+                if (weatherData[i].getPrecipitation() > tempPrecipitation) {
+                    tempPrecipitation = weatherData[i].getPrecipitation();
                     tempIndex = i;
                 }
             }
         }
-        return weatherDays[tempIndex].getDate().getMonth();
+        return weatherData[tempIndex].getDate().getMonth();
     }
 
     public DateRange getLongestWarmingTrend(int year) {
@@ -153,20 +161,20 @@ public class WeatherManager {
         int currentStartIndex = 0;
         int currentEndIndex = 0;
 
-        for (int i = 1; i < weatherDays.length; i++) {
-            if(weatherDays[i].getDate().getYear() == year) {
+        for (int i = 1; i < weatherData.length; i++) {
+            if(weatherData[i].getDate().getYear() == year) {
                 currentStartIndex = i;
                 break;
             }
         }
-        for (int i = 1; i < weatherDays.length; i++) {
-            if(weatherDays[i].getDate().getYear() != year) {
+        for (int i = 1; i < weatherData.length; i++) {
+            if(weatherData[i].getDate().getYear() != year) {
                 continue;
             }
-            if (weatherDays[i].getTempAvg() > weatherDays[i - 1].getTempAvg()) {
+            if (weatherData[i].getTempAvg() > weatherData[i - 1].getTempAvg()) {
                 currentEndIndex = i;
             }
-            if (weatherDays[i].getTempAvg() < weatherDays[i - 1].getTempAvg()) {
+            if (weatherData[i].getTempAvg() < weatherData[i - 1].getTempAvg()) {
                 if (currentEndIndex - currentStartIndex > bestEndIndex - bestStartIndex) {
                     bestStartIndex = currentStartIndex;
                     bestEndIndex = currentEndIndex;
@@ -175,12 +183,12 @@ public class WeatherManager {
             }
 
         }
-        return new DateRange(weatherDays[bestStartIndex].getDate(), weatherDays[bestEndIndex].getDate());
+        return new DateRange(weatherData[bestStartIndex].getDate(), weatherData[bestEndIndex].getDate());
     }
 
     private void printWeatherData() {
-        for (int i = 0; i < weatherDays.length; i++) {
-            System.out.println(weatherDays[i].toString());
+        for (int i = 0; i < weatherData.length; i++) {
+            System.out.println(weatherData[i].toString());
         }
     }
 
@@ -190,17 +198,17 @@ public class WeatherManager {
      * From https://www.geeksforgeeks.org/insertion-sort/
      */
     private void sortWeatherDateByDate() {
-        for (int i = 1; i < weatherDays.length; i++) {
-            WeatherDay key = weatherDays[i];
+        for (int i = 1; i < weatherData.length; i++) {
+            WeatherDay key = weatherData[i];
             int j = i - 1;
               /* Move elements of arr[0..i-1], that are
                greater/later than key, to one position ahead
                of their current position */
-            while (j >= 0 && weatherDays[j].getDate().compare(key.getDate()) < 0) {
-                weatherDays[j + 1] = weatherDays[j];
+            while (j >= 0 && weatherData[j].getDate().compare(key.getDate()) < 0) {
+                weatherData[j + 1] = weatherData[j];
                 j = j - 1;
             }
-            weatherDays[j + 1] = key;
+            weatherData[j + 1] = key;
         }
     }
 
@@ -215,7 +223,7 @@ public class WeatherManager {
     private void processWeatherData(String nextLine, int index) {
         String[] line = nextLine.split(",");
         WeatherDay weatherDay = buildWeatherDay(line);
-        weatherDays[index] = weatherDay;
+        weatherData[index] = weatherDay;
     }
 
     /**
