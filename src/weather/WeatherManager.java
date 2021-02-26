@@ -67,14 +67,15 @@ public class WeatherManager {
         //read the rest of the lines into our collection
         int index = 0;
         //build your collection of weather data - unsorted
-        while(scanner.hasNextLine()) {
+        while (scanner.hasNextLine()) {
             processWeatherData(scanner.nextLine(), index++);
         }
         scanner.close();
 
         //sort our collection
         sortWeatherDateByDate();
-//        printWeatherData();
+        printWeatherData();
+        //System.out.println(calcLongestWarmingTrend(2018));;
     }
 
     public int getWeatherDayCount() {
@@ -126,7 +127,7 @@ public class WeatherManager {
         double accumulator = 0;
         for (int i = 0; i < weatherDays.length; i++) {
             if (weatherDays[i].getDate().getYear() == year && weatherDays[i].getDate().getMonth() == month) {
-               accumulator += weatherDays[i].getPrecipitation();
+                accumulator += weatherDays[i].getPrecipitation();
             }
         }
         return accumulator;
@@ -143,15 +144,42 @@ public class WeatherManager {
                 }
             }
         }
-        return tempIndex;
+        return weatherDays[tempIndex].getDate().getMonth();
     }
 
-    //public DateRange calcLongestWarmingTrend(int year) {
+    public DateRange getLongestWarmingTrend(int year) {
+        int bestStartIndex = 0;
+        int bestEndIndex = 0;
+        int currentStartIndex = 0;
+        int currentEndIndex = 0;
 
-    //}
+        for (int i = 1; i < weatherDays.length; i++) {
+            if(weatherDays[i].getDate().getYear() == year) {
+                currentStartIndex = i;
+                break;
+            }
+        }
+        for (int i = 1; i < weatherDays.length; i++) {
+            if(weatherDays[i].getDate().getYear() != year) {
+                continue;
+            }
+            if (weatherDays[i].getTempAvg() > weatherDays[i - 1].getTempAvg()) {
+                currentEndIndex = i;
+            }
+            if (weatherDays[i].getTempAvg() < weatherDays[i - 1].getTempAvg()) {
+                if (currentEndIndex - currentStartIndex > bestEndIndex - bestStartIndex) {
+                    bestStartIndex = currentStartIndex;
+                    bestEndIndex = currentEndIndex;
+                }
+                currentStartIndex = i;
+            }
+
+        }
+        return new DateRange(weatherDays[bestStartIndex].getDate(), weatherDays[bestEndIndex].getDate());
+    }
 
     private void printWeatherData() {
-        for(int i = 0; i < weatherDays.length; i++) {
+        for (int i = 0; i < weatherDays.length; i++) {
             System.out.println(weatherDays[i].toString());
         }
     }
@@ -162,7 +190,7 @@ public class WeatherManager {
      * From https://www.geeksforgeeks.org/insertion-sort/
      */
     private void sortWeatherDateByDate() {
-        for(int i = 1; i < weatherDays.length; i++) {
+        for (int i = 1; i < weatherDays.length; i++) {
             WeatherDay key = weatherDays[i];
             int j = i - 1;
               /* Move elements of arr[0..i-1], that are
@@ -193,13 +221,12 @@ public class WeatherManager {
     /**
      * We care about only certain columns in each weather data line, such as date, max temp, etc.
      * So we have pre-defined the columns that we want to extract out of each line, and discard the rest.
+     *
      * @param line
      * @return
      */
     private WeatherDay buildWeatherDay(String[] line) {
-        Date date = new Date(Integer.valueOf(line[INDEX_YEAR]),
-                Integer.valueOf(line[INDEX_MONTH]),
-                Integer.valueOf(line[INDEX_DAY]));
+        Date date = new Date(Integer.valueOf(line[INDEX_YEAR]), Integer.valueOf(line[INDEX_MONTH]), Integer.valueOf(line[INDEX_DAY]));
         int tempHigh = Integer.valueOf(line[INDEX_TEMP_MAX]);
         double tempAvg = Double.valueOf(line[INDEX_TEMP_AVG]);
         int tempLow = Integer.valueOf(line[INDEX_TEMP_MIN]);

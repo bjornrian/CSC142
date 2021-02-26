@@ -41,6 +41,10 @@ public class DateRange {
                 "End:" + this.end;
     }
 
+    public boolean equals(DateRange that) {
+        return this.start.equals(that.getStart()) && this.end.equals(that.getEnd());
+    }
+
     /**
      * Throw an IllegalArgumentException if either Date reference is null.
      *
