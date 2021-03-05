@@ -85,7 +85,7 @@ public class WeatherManager {
         System.out.println("calcAvgLowTemp: " + calcAvgLowTemp(2019, 1));
         System.out.println("calcRainTotal: " + calcRainTotal(2018, 3));
         System.out.println("calcRainiestMonth: " + calcRainiestMonth(2018));
-        System.out.println("getLongestWarmingTrend" + getLongestWarmingTrend(2018));
+        System.out.println("calcLongestWarmingTrend" + calcLongestWarmingTrend(2018));
     }
 
     public int getWeatherDayCount() {
@@ -155,7 +155,7 @@ public class WeatherManager {
         return weatherData[tempIndex].getDate().getMonth();
     }
 
-    public DateRange getLongestWarmingTrend(int year) {
+    public DateRange calcLongestWarmingTrend(int year) {
         int bestStartIndex = 0;
         int bestEndIndex = 0;
         int currentStartIndex = 0;
@@ -197,7 +197,7 @@ public class WeatherManager {
      * Sorted in ascending order based on WeatherDay.date property
      * From https://www.geeksforgeeks.org/insertion-sort/
      */
-    private void sortWeatherDateByDate() {
+    public void sortWeatherDateByDate() {
         for (int i = 1; i < weatherData.length; i++) {
             WeatherDay key = weatherData[i];
             int j = i - 1;
