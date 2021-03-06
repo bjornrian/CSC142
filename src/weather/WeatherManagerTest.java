@@ -15,11 +15,11 @@ public class WeatherManagerTest {
     public void findLongestTrendTest() throws FileNotFoundException {
         WeatherManager manager = buildWeatherManager();
         DateRange expected = new DateRange(new Date(2018, 12, 4), new Date(2018, 12, 11));
-        DateRange actual = manager.getLongestWarmingTrend(2018);
+        DateRange actual = manager.calcLongestWarmingTrend(2018);
         assertTrue(expected.equals(actual));
 
         expected = new DateRange(new Date(2019, 2, 9), new Date(2019, 2, 15));
-        actual = manager.getLongestWarmingTrend(2019);
+        actual = manager.calcLongestWarmingTrend(2019);
         System.out.println(actual);
         assertTrue(expected.equals(actual));
     }

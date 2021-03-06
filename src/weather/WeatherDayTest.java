@@ -11,7 +11,7 @@ public class WeatherDayTest {
     @Test
     public void testCalcHeatIndexWikipedia() {
         WeatherDay weatherDay = new WeatherDay(90.0, 90.0);
-        assertEquals(122, weatherDay.calcHeatIndexWikipedia(), DELTA);
+        assertEquals(122, weatherDay.calcHeatIndex(), DELTA);
     }
 
     @Test
