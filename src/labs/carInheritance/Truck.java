@@ -1,6 +1,8 @@
-package labs;
+package labs.carInheritance;
 
-public class Truck extends Car{
+import labs.carInheritance.Car;
+
+public class Truck extends Car {
     public String vin;
     public String color;
     public double cost;

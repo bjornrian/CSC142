@@ -1,6 +1,6 @@
-package labs;
+package labs.carInheritance;
 
-public class Car extends Vehicle{
+public class Car extends Vehicle {
     public String vin;
     public String color;
     public double cost;

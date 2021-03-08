@@ -1,4 +1,9 @@
-package labs;
+package labs.carInheritance;
+
+import labs.carInheritance.Car;
+import labs.carInheritance.Coupe;
+import labs.carInheritance.Truck;
+import labs.carInheritance.Vehicle;
 
 public class Main {
 

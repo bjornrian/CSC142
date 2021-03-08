@@ -1,4 +1,4 @@
-package labs;
+package labs.carInheritance;
 
 public class Vehicle {
     public String vin;
