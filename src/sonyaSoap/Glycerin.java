@@ -8,5 +8,20 @@ public class Glycerin extends Soap {
 
     public Glycerin(int size, String shape, String fragrance) {
         super(size, shape, fragrance, false, BUBBLE_SIZE, SOFTNESS, PRICE);
+        verifySize(size);
+        verifyFragrance(fragrance);
+    }
+
+    private void verifySize(int size) {
+        if (size == Size.SMALL.getSize()) {
+            throw new IllegalArgumentException("Invalid size");
+        }
+    }
+
+    private void verifyFragrance(String fragrance) {
+        if (fragrance.equals(Fragrance.OCEAN_BREEZE.getFragrance())) {
+            throw new IllegalArgumentException("Invalid fragrance");
+
+        }
     }
 }

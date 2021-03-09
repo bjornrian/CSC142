@@ -11,5 +11,4 @@ public class Chunked extends Glycerin {
             throw new IllegalArgumentException("Invalid shape");
         }
     }
-
 }
