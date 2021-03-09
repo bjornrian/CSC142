@@ -13,7 +13,7 @@ public class OliveOil extends Soap{
 
     private void validateShape(String shape) {
         if(shape.equals(Shape.BAR.getShape())) {
-            throw new IllegalArgumentException("Invalid shape");
+            throw new IllegalArgumentException("Error: Invalid shape.");
         }
     }
 }

@@ -80,7 +80,7 @@ public abstract class Soap {
         builder.append(formatFeature("Bubble Size Rating:", String.valueOf(bubbleSize)));
         builder.append(formatFeature("Softness Rating:", String.valueOf(softness)));
         builder.append(formatFeature("Price Per Ounce:", String.valueOf(pricePerOz)));
-        return builder.toString();
+        return String.valueOf(builder);
     }
 
     private String formatFeature(String feature, String content) {

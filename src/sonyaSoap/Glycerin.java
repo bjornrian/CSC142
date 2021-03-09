@@ -14,14 +14,16 @@ public class Glycerin extends Soap {
 
     private void verifySize(int size) {
         if (size == Size.SMALL.getSize()) {
-            throw new IllegalArgumentException("Invalid size");
+            throw new IllegalArgumentException("Error: Invalid size.");
         }
     }
 
     private void verifyFragrance(String fragrance) {
         if (fragrance.equals(Fragrance.OCEAN_BREEZE.getFragrance())) {
-            throw new IllegalArgumentException("Invalid fragrance");
+            throw new IllegalArgumentException("Error: Invalid fragrance.");
 
         }
     }
+
+
 }
