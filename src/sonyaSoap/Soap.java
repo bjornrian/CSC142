@@ -8,14 +8,14 @@ public abstract class Soap {
     private static final int MAX_SOFTNESS = 5;
 
     private int size;
-    private Shape shape;
-    private Fragrance fragrance;
+    private String shape;
+    private String fragrance;
     private boolean exfoliating;
     private int bubbleSize;
     private int softness;
     private double pricePerOz;
 
-    public Soap(int size, Shape shape, Fragrance fragrance, boolean exfoliating,
+    public Soap(int size, String shape, String fragrance, boolean exfoliating,
             int bubbleSize, int softness, double pricePerOz) {
         this.size = size;
         this.shape = shape;
@@ -24,6 +24,34 @@ public abstract class Soap {
         this.setBubbleSize(bubbleSize);
         this.setSoftness(softness);
         this.setPricePerOz(pricePerOz);
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public String getShape() {
+        return shape;
+    }
+
+    public String getFragrance() {
+        return fragrance;
+    }
+
+    public boolean getExfoliating() {
+        return exfoliating;
+    }
+
+    public int getBubbleSize() {
+        return bubbleSize;
+    }
+
+    public int getSoftness() {
+        return softness;
+    }
+
+    public double getPricePerOz() {
+        return pricePerOz;
     }
 
     private void setPricePerOz(double pricePerOz) {
@@ -41,38 +69,18 @@ public abstract class Soap {
         this.bubbleSize = bubbleSize;
     }
 
-    public String getSize() {
-        return formatFeature("Size:", String.valueOf(size));
-    }
-
-    public String getShape() {
-        return formatFeature("Shape:", String.valueOf(shape));
-    }
-
-    public String getFragrance() {
-        return formatFeature("Fragrance:", String.valueOf(fragrance));
-    }
-
-    public String getExfoliation() {
-        return formatFeature("Exfoliating:", String.valueOf(exfoliating));
-    }
-
-    public String getBubbleSize() {
-        return formatFeature("Bubble Size Rating:", String.valueOf(bubbleSize));
-    }
-
-    public String getSoftness() {
-        return formatFeature("Softness Rating:", String.valueOf(softness));
-    }
-
-    public String getPricePerOz() {
-        return formatFeature("Price Per Ounce:", String.valueOf(pricePerOz));
-    }
-
     public String toString() {
-        return "-------------------------------------\n" +
-                getClass().getName() + "\n" + getSize() + getShape() + getFragrance() +
-                getExfoliation() + getBubbleSize() + getSoftness() + getPricePerOz();
+        StringBuilder builder = new StringBuilder("-------------------------------------\n");
+        builder.append(getClass().getName());
+        builder.append("\n");
+        builder.append(formatFeature("Size:", String.valueOf(size)));
+        builder.append(formatFeature("Shape:", shape));
+        builder.append(formatFeature("Fragrance:", fragrance));
+        builder.append(formatFeature("Exfoliating:", String.valueOf(exfoliating)));
+        builder.append(formatFeature("Bubble Size Rating:", String.valueOf(bubbleSize)));
+        builder.append(formatFeature("Softness Rating:", String.valueOf(softness)));
+        builder.append(formatFeature("Price Per Ounce:", String.valueOf(pricePerOz)));
+        return builder.toString();
     }
 
     private String formatFeature(String feature, String content) {
