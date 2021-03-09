@@ -8,8 +8,8 @@ public class Chunked extends Glycerin {
     }
 
     @Override
-    public double getPricePerOz() {
-        return super.getPricePerOz() + 0.1;
+    public String pricePerOz() {
+        return formatFeature("Price Per Ounce:", String.valueOf(PRICE + 0.1));
     }
 
     private void verifySize(int size) {

@@ -21,81 +21,68 @@ public abstract class Soap {
         this.shape = shape;
         this.fragrance = fragrance;
         this.exfoliating = exfoliating;
-        this.setBubbleSize(bubbleSize);
-        this.setSoftness(softness);
-        this.setPricePerOz(pricePerOz);
+        this.bubbleSize = verifyRange(1, 5, bubbleSize);
+        this.softness = verifyRange(1, 5, softness);
+        this.pricePerOz = verifyNonNegative(pricePerOz);
     }
 
-    public int getSize() {
-        return size;
+    public String size() {
+        return formatFeature("Size:", String.valueOf(size));
     }
 
-    public String getShape() {
-        return shape;
+    public String shape() {
+        return formatFeature("Shape:", shape);
     }
 
-    public String getFragrance() {
-        return fragrance;
+    public String fragrance() {
+        return formatFeature("Fragrance:", fragrance);
     }
 
-    public boolean getExfoliating() {
-        return exfoliating;
+    public String exfoliating() {
+        return formatFeature("Exfoliating:", String.valueOf(exfoliating));
     }
 
-    public int getBubbleSize() {
-        return bubbleSize;
+    public String bubbleSize() {
+        return formatFeature("Bubble Size Rating:", String.valueOf(bubbleSize));
     }
 
-    public int getSoftness() {
-        return softness;
+    public String softness() {
+        return formatFeature("Softness Rating:", String.valueOf(softness));
     }
 
-    public double getPricePerOz() {
-        return pricePerOz;
-    }
-
-    private void setPricePerOz(double pricePerOz) {
-        verifyNonNegative(pricePerOz);
-        this.pricePerOz = pricePerOz;
-    }
-
-    private void setSoftness(int softness) {
-        verifyRange(MIN_SOFTNESS, MAX_SOFTNESS, softness);
-        this.softness = softness;
-    }
-
-    private void setBubbleSize(int bubbleSize) {
-        verifyRange(MIN_BUBBLE_SIZE, MAX_BUBBLE_SIZE, bubbleSize);
-        this.bubbleSize = bubbleSize;
+    public String pricePerOz() {
+        return formatFeature("Price Per Ounce:", String.valueOf(pricePerOz));
     }
 
     public String toString() {
         StringBuilder builder = new StringBuilder("-------------------------------------\n");
-        builder.append(getClass().getName());
+        builder.append(getClass().getName().substring(10) + " soap");
         builder.append("\n");
-        builder.append(formatFeature("Size:", String.valueOf(size)));
-        builder.append(formatFeature("Shape:", shape));
-        builder.append(formatFeature("Fragrance:", fragrance));
-        builder.append(formatFeature("Exfoliating:", String.valueOf(exfoliating)));
-        builder.append(formatFeature("Bubble Size Rating:", String.valueOf(bubbleSize)));
-        builder.append(formatFeature("Softness Rating:", String.valueOf(softness)));
-        builder.append(formatFeature("Price Per Ounce:", String.valueOf(pricePerOz)));
+        builder.append(size());
+        builder.append(shape());
+        builder.append(fragrance());
+        builder.append(exfoliating());
+        builder.append(bubbleSize());
+        builder.append(softness());
+        builder.append(pricePerOz());
         return String.valueOf(builder);
     }
 
-    private String formatFeature(String feature, String content) {
+    public String formatFeature(String feature, String content) {
         return String.format(FEATURE_FORMAT, feature, content);
     }
 
-    private void verifyNonNegative(double pricePerOz) {
+    private double verifyNonNegative(double pricePerOz) {
         if (pricePerOz < 0) {
             throw new IllegalArgumentException("Error: Price per ounce must be more than zero.");
         }
+        return pricePerOz;
     }
 
-    private void verifyRange(int min, int max, int number) {
+    private int verifyRange(int min, int max, int number) {
         if (number < min || number > max) {
             throw new IllegalArgumentException("Error: Rating number must be between " + min + " and " + max + ".");
         }
+        return number;
     }
 }

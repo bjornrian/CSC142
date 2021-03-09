@@ -22,8 +22,8 @@ public class ChunkedTest {
 
     @Test public void testExfoliating() {
         Chunked soap = createSoap();
-        boolean expectedExfoliating = false;
-        assertEquals(expectedExfoliating, soap.getExfoliating());
+        String expectedExfoliating = "Exfoliating:        false\n";
+        assertEquals(expectedExfoliating, soap.exfoliating());
     }
 
     private Chunked createSoap() {

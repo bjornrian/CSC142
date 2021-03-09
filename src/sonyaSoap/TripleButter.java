@@ -6,16 +6,17 @@ public class TripleButter extends CoconutOil {
     }
 
     @Override
-    public int getBubbleSize() {
-        return super.getBubbleSize() + 1;
+    public String bubbleSize() {
+        return formatFeature("Bubble Size Rating:", String.valueOf(BUBBLE_SIZE + 1));
     }
 
     @Override
-    public int getSoftness() {
-        return super.getSoftness() + 1;
+    public String softness() {
+        return formatFeature("Softness Rating:", String.valueOf(SOFTNESS + 1));
     }
 
-    @Override public double getPricePerOz() {
-        return super.getPricePerOz() + 0.11;
+    @Override
+    public String pricePerOz() {
+        return formatFeature("Price Per Ounce:", String.valueOf(PRICE + 0.11));
     }
 }

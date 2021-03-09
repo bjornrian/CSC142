@@ -5,27 +5,27 @@ import org.junit.Test;
 
 public class CoconutOilTest {
     @Test
-    public void testBubleSize() {
-        CoconutOil soap = creatSoap();
-        int expectedBubbleSize = 3;
-        assertEquals(expectedBubbleSize, soap.getBubbleSize());
+    public void testBubbleSize() {
+        CoconutOil soap = createSoap();
+        String expectedBubbleSize = "Bubble Size Rating: 3\n";
+        assertEquals(expectedBubbleSize, soap.bubbleSize());
     }
 
     @Test
     public void testSoftness() {
-        CoconutOil soap = creatSoap();
-        int expectedSoftness = 4;
-        assertEquals(expectedSoftness, soap.getSoftness());
+        CoconutOil soap = createSoap();
+        String expectedSoftness = "Softness Rating:    4\n";
+        assertEquals(expectedSoftness, soap.softness());
     }
 
     @Test
     public void testPrice() {
-        CoconutOil coconutOilSoap = creatSoap();
-        double expectedPrice = 1.49;
-        assertEquals(expectedPrice, coconutOilSoap.getPricePerOz(), 0.1);
+        CoconutOil coconutOilSoap = createSoap();
+        String expectedPrice = "Price Per Ounce:    1.49\n";
+        assertEquals(expectedPrice, coconutOilSoap.pricePerOz());
     }
 
-    private CoconutOil creatSoap() {
+    private CoconutOil createSoap() {
         return new CoconutOil(Size.MEDIUM.getSize(), Shape.BAR.getShape(), Fragrance.MANGO.getFragrance(), false);
     }
 }
