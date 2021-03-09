@@ -1,5 +1,7 @@
 package sonyaSoap;
 
+import java.text.DecimalFormat;
+
 public abstract class Soap {
     private static final String FEATURE_FORMAT = "%-20s%s\n";
     private static final int MIN_BUBBLE_SIZE = 1;
@@ -14,6 +16,8 @@ public abstract class Soap {
     private int bubbleSize;
     private int softness;
     private double pricePerOz;
+
+    DecimalFormat twoDecimal = new DecimalFormat("0.00");
 
     public Soap(int size, String shape, String fragrance, boolean exfoliating,
             int bubbleSize, int softness, double pricePerOz) {
@@ -51,11 +55,11 @@ public abstract class Soap {
     }
 
     public String pricePerOz() {
-        return formatFeature("Price Per Ounce:", String.valueOf(pricePerOz));
+        return formatFeature("Price Per Ounce:", String.valueOf(twoDecimal.format(pricePerOz)));
     }
 
     public String toString() {
-        StringBuilder builder = new StringBuilder("-------------------------------------\n");
+        StringBuilder builder = new StringBuilder("-----------------------------\n");
         builder.append(getClass().getName().substring(10) + " soap");
         builder.append("\n");
         builder.append(size());
