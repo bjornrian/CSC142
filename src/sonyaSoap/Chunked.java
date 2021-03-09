@@ -1,6 +1,10 @@
 package sonyaSoap;
 
+import java.text.DecimalFormat;
+
 public class Chunked extends Glycerin {
+
+    DecimalFormat twoDecimal = new DecimalFormat("0.00");
 
     public Chunked(int size, String shape, String fragrance) {
         super(size, shape, fragrance);
@@ -9,7 +13,7 @@ public class Chunked extends Glycerin {
 
     @Override
     public String pricePerOz() {
-        return formatFeature("Price Per Ounce:", String.valueOf(PRICE + 0.1));
+        return formatFeature("Price Per Ounce:", String.valueOf(twoDecimal.format(PRICE + 0.1)));
     }
 
     private void verifySize(int size) {

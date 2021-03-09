@@ -17,8 +17,6 @@ public abstract class Soap {
     private int softness;
     private double pricePerOz;
 
-    DecimalFormat twoDecimal = new DecimalFormat("0.00");
-
     public Soap(int size, String shape, String fragrance, boolean exfoliating,
             int bubbleSize, int softness, double pricePerOz) {
         this.size = size;
@@ -55,7 +53,7 @@ public abstract class Soap {
     }
 
     public String pricePerOz() {
-        return formatFeature("Price Per Ounce:", String.valueOf(twoDecimal.format(pricePerOz)));
+        return formatFeature("Price Per Ounce:", String.valueOf(pricePerOz));
     }
 
     public String toString() {
