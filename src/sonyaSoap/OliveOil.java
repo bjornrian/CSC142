@@ -1,5 +1,8 @@
 package sonyaSoap;
 
+/**
+ * Sonya’s offers several types of soaps, one of the main types being Olive Oil soap.
+ */
 public class OliveOil extends Soap{
 
     private static final int BUBBLE_SIZE = 2;

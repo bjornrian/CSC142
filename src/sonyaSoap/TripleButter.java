@@ -1,5 +1,10 @@
 package sonyaSoap;
 
+/**
+ * A special type of coconut oil soap is offered at Sonya's Soaps,
+ * a “triple butter” soap that includes additional nut and fruit
+ * butters.
+ */
 public class TripleButter extends CoconutOil {
     public TripleButter(int size, String shape, String fragrance) {
         super(size, shape, fragrance, false);

@@ -2,6 +2,11 @@ package sonyaSoap;
 
 import java.text.DecimalFormat;
 
+/**
+ * This is the parent class of all the soap types. All of the subclasses inherit
+ * from this class. If the subclasses have special properties or rules, they will
+ * override those.
+ */
 public abstract class Soap {
     private static final String FEATURE_FORMAT = "%-20s%s\n";
     private static final int MIN_BUBBLE_SIZE = 1;
@@ -71,6 +76,9 @@ public abstract class Soap {
         this.bubbleSize = bubbleSize;
     }
 
+    /**
+     * @return a formatted list of features for a soap type.
+     */
     public String toString() {
         DecimalFormat twoDecimal = new DecimalFormat("0.00");
         StringBuilder builder = new StringBuilder("-----------------------------\n");
