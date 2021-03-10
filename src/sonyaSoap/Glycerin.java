@@ -4,10 +4,11 @@ public class Glycerin extends Soap {
 
     private static final int BUBBLE_SIZE = 2;
     private static final int SOFTNESS = 3;
-    public static final double PRICE = 1.29;
+    private static final double PRICE = 1.29;
+    private static final boolean EXFOLIATING = false;
 
     public Glycerin(int size, String shape, String fragrance) {
-        super(size, shape, fragrance, false, BUBBLE_SIZE, SOFTNESS, PRICE);
+        super(size, shape, fragrance, EXFOLIATING, BUBBLE_SIZE, SOFTNESS, PRICE);
         verifySize(size);
         verifyFragrance(fragrance);
     }

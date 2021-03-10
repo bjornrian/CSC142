@@ -5,28 +5,29 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class TripleButterTest {
+
+    @Test public void testExfoliating() {
+        TripleButter soap = createSoap();
+        boolean expectedExfoliating = false;
+        assertEquals(expectedExfoliating, soap.getExfoliating());
+    }
+
     @Test public void testBubbleSize() {
         TripleButter soap = createSoap();
-        String expectedBubbleSize = "Bubble Size Rating: 3\n";
-        assertEquals(expectedBubbleSize, soap.bubbleSize());
+        int expectedBubbleSize = 4;
+        assertEquals(expectedBubbleSize, soap.getBubbleSize());
     }
 
     @Test public void testSoftness() {
         TripleButter soap = createSoap();
-        String expectedSoftness = "Softness Rating:    4\n";
-        assertEquals(expectedSoftness, soap.softness());
+        int expectedSoftness = 5;
+        assertEquals(expectedSoftness, soap.getSoftness());
     }
 
     @Test public void testPrice() {
         TripleButter soap = createSoap();
-        String expectedPrice = "Price Per Ounce:    1.49\n";
-        assertEquals(expectedPrice, soap.pricePerOz());
-    }
-
-    @Test public void testExfoliating() {
-        TripleButter soap = createSoap();
-        String expectedExfoliating = "Exfoliating:        false\n";
-        assertEquals(expectedExfoliating, soap.exfoliating());
+        double expectedPrice = 1.60;
+        assertEquals(expectedPrice, soap.getPricePerOz(), 0.0001);
     }
 
     private TripleButter createSoap() {

@@ -20,10 +20,32 @@ public class ChunkedTest {
         Chunked soap = new Chunked(Size.LARGE.getSize(), Shape.SEASHELL.getShape(), Fragrance.OCEAN_BREEZE.getFragrance());
     }
 
-    @Test public void testExfoliating() {
+    @Test
+    public void testExfoliating() {
         Chunked soap = createSoap();
-        String expectedExfoliating = "Exfoliating:        false\n";
-        assertEquals(expectedExfoliating, soap.exfoliating());
+        boolean expectedExfoliating = false;
+        assertEquals(expectedExfoliating, soap.getExfoliating());
+    }
+
+    @Test
+    public void testBubbleSize() {
+        Chunked soap = createSoap();
+        int expectedBubbleSize = 2;
+        assertEquals(expectedBubbleSize, soap.getBubbleSize());
+    }
+
+    @Test
+    public void testSoftness() {
+        Chunked soap = createSoap();
+        int expectedSoftness = 3;
+        assertEquals(expectedSoftness, soap.getSoftness());
+    }
+
+    @Test
+    public void testPrice() {
+        Chunked soap = createSoap();
+        double expectedPrice = 1.39;
+        assertEquals(expectedPrice, soap.getPricePerOz(), 0.0001);
     }
 
     private Chunked createSoap() {

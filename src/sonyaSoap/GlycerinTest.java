@@ -17,8 +17,8 @@ public class GlycerinTest {
 
     @Test public void testExfoliating() {
         Glycerin soap = createSoap();
-        String expectedExfoliating = "Exfoliating:        false\n";
-        assertEquals(expectedExfoliating, soap.exfoliating());
+        boolean expectedExfoliating = false;
+        assertEquals(expectedExfoliating, soap.getExfoliating());
     }
 
     private Glycerin createSoap() {
