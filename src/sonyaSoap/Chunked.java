@@ -11,6 +11,11 @@ public class Chunked extends Glycerin {
         verifyShape(shape);
     }
 
+    @Override
+    public String getName() {
+        return "Chunked";
+    }
+
     private void verifyShape(String shape) {
         if(shape.equals(Shape.SEAHORSE.getShape())) {
             throw new IllegalArgumentException("Invalid shape");

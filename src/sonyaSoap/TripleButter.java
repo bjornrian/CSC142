@@ -11,6 +11,11 @@ public class TripleButter extends CoconutOil {
     }
 
     @Override
+    public String getName() {
+        return "Triple Butter";
+    }
+
+    @Override
     public int getBubbleSize() {
         return super.getBubbleSize() + 1;
     }

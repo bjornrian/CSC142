@@ -16,6 +16,11 @@ public class Glycerin extends Soap {
         verifyFragrance(fragrance);
     }
 
+    @Override
+    public String getName() {
+        return "Glycerin";
+    }
+
     private void verifySize(int size) {
         if (size == Size.SMALL.getSize()) {
             throw new IllegalArgumentException("Error: Invalid size.");

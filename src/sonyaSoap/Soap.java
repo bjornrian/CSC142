@@ -21,6 +21,7 @@ public abstract class Soap {
     private int bubbleSize;
     private int softness;
     private double pricePerOz;
+    private String name = "Soap";
 
     public Soap(int size, String shape, String fragrance, boolean exfoliating,
             int bubbleSize, int softness, double pricePerOz) {
@@ -61,6 +62,10 @@ public abstract class Soap {
         return pricePerOz;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void setPricePerOz(double pricePerOz) {
         verifyNonNegative(pricePerOz);
         this.pricePerOz = pricePerOz;
@@ -82,7 +87,7 @@ public abstract class Soap {
     public String toString() {
         DecimalFormat twoDecimal = new DecimalFormat("0.00");
         StringBuilder builder = new StringBuilder("-----------------------------\n");
-        builder.append(getClass().getName().substring(10) + " soap");
+        builder.append(getName() + " soap");
         builder.append("\n");
         builder.append(formatFeature("Size:", String.valueOf(getSize())));
         builder.append(formatFeature("Shape:", getShape()));

@@ -12,4 +12,9 @@ public class CoconutOil extends Soap {
     public CoconutOil(int size, String shape, String fragrance, boolean exfoliating) {
         super(size, shape, fragrance, exfoliating, BUBBLE_SIZE, SOFTNESS, PRICE);
     }
+
+    @Override
+    public String getName() {
+        return "Coconut Oil";
+    }
 }

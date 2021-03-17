@@ -14,6 +14,11 @@ public class OliveOil extends Soap{
         validateShape(shape);
     }
 
+    @Override
+    public String getName() {
+        return "Olive Oil";
+    }
+
     private void validateShape(String shape) {
         if(shape.equals(Shape.BAR.getShape())) {
             throw new IllegalArgumentException("Error: Invalid shape.");
