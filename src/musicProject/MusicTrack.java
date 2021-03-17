@@ -2,7 +2,7 @@ package musicProject;
 
 //Need to implement unknown interface (for the purpose of
 //trackNumber and indexing MusicTracks).
-public class MusicTrack {
+public class MusicTrack implements Comparable {
 
     private String artist;
     private String title;
@@ -13,27 +13,40 @@ public class MusicTrack {
         this.title = title;
     }
 
+    public int compareTo(Object o) {
+        int trackNumber = ((MusicTrack) o).getTrackNumber();
+        return this.trackNumber - trackNumber;
+    }
+
     public String getArtist() {
-        return this.artist;
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
     }
 
     public String getTitle() {
-        return this.title;
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public int getTrackNumber() {
-        return this.trackNumber;
+        return trackNumber;
     }
 
     public void setTrackNumber(int trackNumber) {
         this.trackNumber = trackNumber;
     }
 
-    //public void ???() {} [interface method needed here!]
-
     public String toString() {
-        return  "Artist: "         + this.artist +
-                "\nTitle: "        + this.title  +
-                "\nTrack Number: " + this.trackNumber;
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.trackNumber).append(". ");
+        builder.append(this.title).append(" -- ");
+        builder.append(this.artist);
+        return builder.toString();
     }
 }
